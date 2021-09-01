@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Article;
 
 class HomeController extends Controller
 {
@@ -25,15 +25,5 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    }
-
-    public function articleList(Request $request)
-    {
-        return view(
-            'article_list.blade.php'
-            [
-                //
-            ]
-        );
     }
 }

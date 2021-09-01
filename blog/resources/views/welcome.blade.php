@@ -94,6 +94,7 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                     <a href="{{route('article.new')}}">記事投稿</a>
+                    <a href="{{route('article.list')}}">ブログ一覧</a>
                 </div>
             </div>
         </div>
