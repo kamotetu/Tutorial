@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -128,12 +129,15 @@ class ArticleController extends Controller
     public function search(Request $request)
     {
         $word = $request->get('word');
-        if ($word !== null) {
-            $escape_word = addcslashes($word, '\\_%');
-            $articles = Article::where('title', 'like', '%' . $escape_word . '%')->get();
-        } else {
-            $articles = Article::all();
+        $query = Article::query();
+        if (isset($word)) {
+            $array_words = preg_split('/\s+/ui', $word, -1, PREG_SPLIT_NO_EMPTY);
+            foreach ($array_words as $w) {
+                $escape_word = addcslashes($w, '\\_%');
+                $query = $query->where(DB::raw("CONCAT(title, ' ', content)"), 'like', '%' . $escape_word . '%');
+            }
         }
+        $articles = $query->get();
         return view(
             'article.list',
             [
