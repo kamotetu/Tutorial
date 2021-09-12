@@ -37,9 +37,7 @@ class ArticleController extends Controller
                 'string',
             ],
         ]);
-        if ($validator->fails()) {
-            $validator->validate();
-        }
+        $validator->validate();
         $id = $request->get('id');
         $article = Article::find($id);
         if (isset($article) && $article->user_id !== Auth::user()->id) {
