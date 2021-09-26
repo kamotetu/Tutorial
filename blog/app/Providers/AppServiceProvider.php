@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Article;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //modelのboot関数のテストのため実行しない。observerで実装したい方はifを外してください！(☝︎ ՞ਊ ՞)☝︎
+        if (false) {
+            Article::observe(\App\Observers\TestObserver::class);
+        }
     }
 }

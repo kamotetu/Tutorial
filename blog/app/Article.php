@@ -19,4 +19,15 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function (self $article) {
+            $article->title = 'model_creating';
+        });
+        self::updating(function (self $article) {
+            $article->title = 'model_updating';
+        });
+    }
 }
