@@ -16,6 +16,20 @@
     内容:
     <br>
     {!!nl2br(e($article->content))!!}
+
+    <svg height="100" width="100" id="svg001">
+        <circle cx="50" cy="50" r="40"/>
+    </svg>
+    <style>
+        svg {
+            fill: none;
+            stroke: lightgreen;
+            stroke-width: 20;
+            vertical-align: middle;
+            stroke-dasharray: calc((40 * 2) * 3.14);
+            stroke-dashoffset: 0;
+        }
+    </style>
 @endsection
 
 

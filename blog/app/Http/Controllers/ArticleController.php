@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -14,9 +15,20 @@ use Illuminate\Database\Eloquent;
 
 class ArticleController extends Controller
 {
-    public function new ()
+    public function new (Request $request)
     {
-        return view('article.new');
+        $articles = Article::query()
+            ->get();
+        foreach ($articles as $article) {
+            $a = $article->count;
+        }
+
+        return view(
+            'article.new',
+            [
+                'result' => $request,
+            ]
+        );
     }
 
     public function create(Request $request)

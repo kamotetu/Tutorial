@@ -10,6 +10,10 @@ class Article extends Model
         'title', 'content', 'user_id',
     ];
 
+    protected $casts = [
+        'date_created_at' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
