@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +34,5 @@ Route::get('/article/list/search', 'ArticleController@search')->name('article.li
 Route::get('/article/edit/{id}', 'ArticleController@edit')->name('article.edit')->middleware('auth');
 
 Route::post('/article/delete', 'ArticleController@delete')->name('article.delete')->middleware('auth');
+
+Route::get('/user/index', 'UserController@index')->name('user.index');
