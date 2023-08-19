@@ -36,6 +36,17 @@ class ArticleController extends Controller
                 'nullable',
                 'string',
             ],
+        ],[
+            'title.required' => ':attributeは(ﾟ∀ﾟ )おすおす',
+        ])->after(function (\Illuminate\Contracts\Validation\Validator $validator) {
+            if (empty($validator->failed())) {
+                $params = $validator->getData();
+                if ($params['title'] !== 'おすおす') {
+                    $validator->errors()->add('title', 'おすおすちゃうやん');
+                }
+            }
+        })->setAttributeNames([
+            'title' => 'タイトル',
         ]);
         $validator->validate();
         $id = $request->get('id');
